@@ -1,5 +1,4 @@
 import {useState, type KeyboardEvent} from 'react';
-
 import {Plus, Trash2, Check} from 'lucide-react';
 
 import {Button} from '@/components/ui/button';
@@ -18,30 +17,42 @@ export const TasksApp = () => {
   const [inputValue, setInputValue] = useState('');
 
   const addTodo = () => {
-    console.log('Agregar tarea', inputValue);
+    if (inputValue.length === 0) return
 
-  };
-
-  const toggleTodo = (id: number) => {
-    console.log('Cambiar de true a false', id);
-
-  };
-
-  const deleteTodo = (id: number) => {
-    console.log('Eliminar tarea', id);
-
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: inputValue.trim(),
+      completed: false
+    }
+    setTodos([...todos, newTodo])
+    setInputValue("")
   };
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    console.log('Presiono enter');
+    if (e.key === "Enter") {
+      addTodo()
+    }
+  };
 
+  const toggleTodo = (id: number) => {
+    const updatedTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {...todo, completed: !todo.completed}
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+  };
+
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id))
   };
 
   const completedCount = todos.filter((todo) => todo.completed).length;
   const totalCount = todos.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 p-4">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-slate-800 mb-2">
@@ -88,7 +99,7 @@ export const TasksApp = () => {
               </div>
               <div className="w-full bg-slate-200 rounded-full h-2">
                 <div
-                  className="bg-gradient-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-300 ease-out"
+                  className="bg-linear-to-r from-green-400 to-green-500 h-2 rounded-full transition-all duration-300 ease-out"
                   style={{width: `${(completedCount / totalCount) * 100}%`}}
                 />
               </div>
