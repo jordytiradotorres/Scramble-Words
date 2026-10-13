@@ -1,4 +1,4 @@
-import {useState, type KeyboardEvent, useReducer} from 'react';
+import {useState, type KeyboardEvent, useReducer, useEffect} from 'react';
 import {Plus, Trash2, Check} from 'lucide-react';
 
 import {Button} from '@/components/ui/button';
@@ -10,8 +10,11 @@ import {getTasksInitialState, tasksReducer} from "@/05-useReducer/reducer/tasksR
 export const TasksApp = () => {
   const [inputValue, setInputValue] = useState('');
   const [state, dispatch] = useReducer(tasksReducer, getTasksInitialState())
-
   const {todos, completed: completedCount, length: totalCount} = state
+
+  useEffect(() => {
+    localStorage.setItem("tasks-state", JSON.stringify(state))
+  }, [state])
 
   const addTodo = () => {
     if (inputValue.length === 0) return
