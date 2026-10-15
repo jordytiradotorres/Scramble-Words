@@ -1,35 +1,97 @@
-# React + TypeScript + Vite
+# Hooks App - React + TypeScript + useReducer
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Proyecto de práctica en React con TypeScript para fortalecer el uso de `useReducer` en la gestión de estado de
+interfaces más complejas. Este repositorio incluye dos ejemplos de aplicación: un juego de palabras `ScrambleWords` y
+una `TaskApp` para gestionar tareas.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn/ui style components
+- localStorage para persistencia
 
-## React Compiler
+## Objetivo del proyecto
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Explorar cómo manejar estados complejos y acciones tipadas mediante el patrón reducer, evitando estados dispersos y
+facilitando la escalabilidad del código.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Funcionalidades
 
-## Expanding the Oxlint configuration
+### ScrambleWords
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- Juego de palabras revueltas
+- Validación de respuestas
+- Sistema de puntos
+- Límite de errores y skips
+- Reinicio de partida
+- Animación con `canvas-confetti`
+- Estado gestionado por `useReducer`
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### TaskApp
+
+- Agregar tareas
+- Marcar como completadas
+- Eliminar tareas
+- Mostrar progreso visual
+- Persistencia en `localStorage`
+- Estado centralizado con reducer
+
+## Estructura del proyecto
+
+```text
+src/
+├── 05-useReducer/
+│   ├── ScrambleWords.tsx
+│   ├── TaskApp.tsx
+│   ├── components/
+│   ├── interfaces/
+│   ├── mocks/
+│   ├── reducer/
+│   └── utils/
+├── components/
+├── hooks/
+├── lib/
+└── main.tsx
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Instalación
+
+```bash
+npm install
+# o
+pnpm install
+```
+
+## Ejecutar en desarrollo
+
+```bash
+npm run dev
+# o
+pnpm dev
+```
+
+## Compilar para producción
+
+```bash
+npm run build
+# o
+pnpm build
+```
+
+## Aprendizajes clave
+
+- Uso de `useReducer` como alternativa a `useState` para estados complejos
+- Reducers con acciones tipadas y estado inmutable
+- Separación de lógica y UI
+- Manejo de estados derivados y validaciones
+- Persistencia del estado del usuario con `localStorage`
+
+## Requisitos
+
+- Node.js 18+
+- npm o pnpm
+
+
