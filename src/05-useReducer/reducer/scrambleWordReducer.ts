@@ -1,55 +1,6 @@
-export interface ScrambleWordsState {
-  currentWord: string;
-  errorCounter: number;
-  guess: string;
-  isGameOver: boolean;
-  maxAllowErrors: number;
-  maxSkips: number;
-  points: number;
-  scrambledWord: string;
-  skipCounter: number;
-  words: string[];
-  totalWords: number
-}
-
-export type ScrambleWordsAction =
-  | { type: "SET_GUESS", payload: string }
-  | { type: "CHECK_ANSWER" }
-  | { type: "SKIP_WORD" }
-  | { type: "START_NEW_GAME", payload: ScrambleWordsState }
-
-export const GAME_WORDS = [
-  'REACT',
-  'JAVASCRIPT',
-  'TYPESCRIPT',
-  'HTML',
-  'ANGULAR',
-  'SOLID',
-  'NODE',
-  'VUEJS',
-  'SVELTE',
-  'EXPRESS',
-  'MONGODB',
-  'POSTGRES',
-  'DOCKER',
-  'KUBERNETES',
-  'WEBPACK',
-  'VITE',
-  'TAILWIND',
-];
-
-// Esta función mezcla el arreglo para que siempre sea aleatorio
-const shuffleArray = (array: string[]) => {
-  return array.sort(() => Math.random() - 0.5);
-};
-
-// Esta función mezcla las letras de la palabra
-const scrambleWord = (word: string = '') => {
-  return word
-    .split('')
-    .sort(() => Math.random() - 0.5)
-    .join('');
-};
+import type {ScrambleWordsAction, ScrambleWordsState} from "@/05-useReducer/interfaces/scrambleWord.interfaces.ts";
+import {GAME_WORDS} from "@/05-useReducer/mocks/game_words.ts";
+import {shuffleArray, scrambleWord} from "@/05-useReducer/utils/scramble.ts";
 
 export const getInitialState = (): ScrambleWordsState => {
   const shuffledWords = shuffleArray([...GAME_WORDS])

@@ -51,7 +51,7 @@ export const TasksApp = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyPress}
-                className="flex-1 border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                className="flex-1 border-slate-200 focus:ring-slate-400"
               />
               <Button
                 onClick={addTodo}
