@@ -1,4 +1,4 @@
-# Hooks App - React + TypeScript + useReducer
+# Scramble Words + TaskList + useReducer
 
 Proyecto de práctica en React con TypeScript para fortalecer el uso de `useReducer` en la gestión de estado de
 interfaces más complejas. Este repositorio incluye dos ejemplos de aplicación: un juego de palabras `ScrambleWords` y
@@ -10,6 +10,7 @@ una `TaskApp` para gestionar tareas.
 - TypeScript
 - Vite
 - Tailwind CSS
+- Zod
 - Shadcn/ui style components
 - localStorage para persistencia
 
